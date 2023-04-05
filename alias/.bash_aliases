@@ -10,7 +10,5 @@ alias glog="git log --decorate --oneline --color --graph"
 ### Fecha o PHPStorm caso ele trave
 alias kphpstorm="sudo kill -9 $(pgrep -f phpstorm)"
 
-alias ktelegram="sudo kill -9 $(pgrep -f telegram)"
-
 ### Abre o nvim ao invés do vim
-alias vim="nvim"
+alias vim="nvim -S ~/.vimrc"

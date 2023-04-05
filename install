@@ -5,11 +5,14 @@ DOTFILES=$(cd $(dirname "${BASH_SOURCE[0]}") && pwd)
 rm -rf $HOME/.config/kitty
 ln -s $DOTFILES/kitty $HOME/.config/kitty
 
-rm -rf $HOME/.bash_alias
-ln -s $DOTFILES/alias/.bash_alias $HOME
+rm -rf $HOME/.bash_aliases
+ln -s $DOTFILES/alias/.bash_aliases $HOME
 
 rm -rf $HOME/.vimrc
 ln -s $DOTFILES/nvim/.vimrc $HOME
 
 rm -rf $HOME/.conkyrc
 ln -s $DOTFILES/conky/.conkyrc $HOME
+
+rm -rf $HOME/.tmux.conf
+ln -s $DOTFILES/tmux/tmux.conf $HOME/.tmux.conf
