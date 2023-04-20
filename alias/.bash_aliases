@@ -11,8 +11,6 @@ alias gchmod="git config core.fileMode false"
 ### Git log legal
 alias glog="git log --decorate --oneline --color --graph"
 
-### Busca quem está ouvindo a porta 80
-
 ### Abre o nvim ao invés do vim
 alias vim="nvim -S ~/.config/nvim/init.vim"
 
