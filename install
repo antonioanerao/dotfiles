@@ -15,7 +15,9 @@ rm -rf $HOME/.config/nvim/init.vim
 ln -s $DOTFILES/nvim/.vimrc $HOME/.config/nvim/init.vim
 
 rm -rf $HOME/.conkyrc
+rm -rf $HOME/.config/conky
 ln -s $DOTFILES/conky/.conkyrc $HOME
+mkdir -p $HOME/.config/conky
 
 rm -rf $HOME/.tmux.conf
 ln -s $DOTFILES/tmux/tmux.conf $HOME/.tmux.conf
