@@ -1,5 +1,5 @@
 ### Escutar determinada porta
-customNetstat() { netstat -tulpn | grep --color :$@; }
+customNetstat() { sudo netstat -tulpn | grep --color :$@; }
 alias eporta='customNetstat'
 
 ### Adiciona permissões necessárias para rodar um projeto Laravel de forma segura
@@ -14,4 +14,7 @@ alias glog="git log --decorate --oneline --color --graph"
 ### Busca quem está ouvindo a porta 80
 
 ### Abre o nvim ao invés do vim
-alias vim="nvim -S ~/.vimrc"
+alias vim="nvim -S ~/.config/nvim/init.vim"
+
+alias ssh="kitty +kitten ssh"
+
