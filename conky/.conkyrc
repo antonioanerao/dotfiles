@@ -83,7 +83,7 @@ ${execi 1000 ip a | grep inet | grep -vw lo | grep -v inet6 | cut -d \/ -f1 | se
 ${font sans-serif:normal:size=8}Down: ${downspeed wlp0s20f3}  ${alignr}Up: ${upspeed wlp0s20f3}
 
 ${font Ubuntu:bold:size=10}CONTAINERS ${hr 2}
-${font sans-serif:normal:size=9}${execi 60 docker stats --no-stream --format "{{.Name | printf \"%-40.40s\" }}\t{{ .MemUsage}}"}
+${font sans-serif:normal:size=9}${execi 1 docker stats --no-stream --format "{{.Name | printf \"%-40.40s\" }}\t{{ .MemUsage}}"}
 
 ${font sans-serif:bold:size=10}TOP PROCESSES ${hr 2}
 ${font sans-serif:normal:size=9}Name $alignr PID   CPU%   MEM%${font sans-serif:normal:size=9}
