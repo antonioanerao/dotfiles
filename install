@@ -11,8 +11,8 @@ ln -s $DOTFILES/alias/.bash_aliases $HOME
 rm -rf $HOME/.vimrc
 ln -s $DOTFILES/nvim/.vimrc $HOME
 
-rm -rf $HOME/.config/nvim/init.vim
-ln -s $DOTFILES/nvim/.vimrc $HOME/.config/nvim/init.vim
+#rm -rf $HOME/.config/nvim/init.vim
+#ln -s $DOTFILES/nvim/.vimrc $HOME/.config/nvim/init.vim
 
 rm -rf $HOME/.conkyrc
 rm -rf $HOME/.config/conky

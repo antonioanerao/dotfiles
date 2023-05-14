@@ -1,0 +1,6 @@
+[user]
+	email = mail@domain.com
+	name = My Name
+	signingkey = /path/to/home/.ssh/github.pub
+[gpg]
+	format = ssh

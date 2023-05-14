@@ -12,7 +12,10 @@ alias gchmod="git config core.fileMode false"
 alias glog="git log --decorate --oneline --color --graph"
 
 ### Abre o nvim ao invés do vim
-alias vim="nvim -S ~/.config/nvim/init.vim"
+alias vim="nvim"
 
-alias ssh="kitty +kitten ssh"
+### Fecha PHPSTORM
+alias kphpstorm="kill -9 $(pgrep -f phpstorm)"
 
+alias py="python3"
+alias python="python3"
