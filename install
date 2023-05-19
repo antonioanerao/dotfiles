@@ -1,18 +1,35 @@
 #!/usr/bin/env bash
 
+function logStep() {
+  echo -e "\n\e[1;32m$1\e[0m"
+}
+
+logStep "Initializing process"
+
 DOTFILES=$(cd $(dirname "${BASH_SOURCE[0]}") && pwd)
+
+logStep "Instaling RipGrep"
+RIPGREP_VERSION=$(curl -s "https://api.github.com/repos/BurntSushi/ripgrep/releases/latest" | grep -Po '"tag_name": "\K[0-9.]+')
+wget -O ripgrep.deb "https://github.com/BurntSushi/ripgrep/releases/latest/download/ripgrep_${RIPGREP_VERSION}_amd64.deb"
+sudo dpkg -i ./ripgrep.deb
+rm -rf ripgrep.deb
+
+# Verifica se a pasta para dados já existe
+if ! [ -d $HOME/.fonts ]; then
+  mkdir $HOME/.fonts
+fi
+
+cp $DOTFILES/fonts/space-mono-nerd-font-complete-mono.ttf $HOME/.fonts
 
 rm -rf $HOME/.config/kitty
 ln -s $DOTFILES/kitty $HOME/.config/kitty
 
 rm -rf $HOME/.bash_aliases
 ln -s $DOTFILES/alias/.bash_aliases $HOME
+source $HOME/.bash_aliases
 
-rm -rf $HOME/.vimrc
-ln -s $DOTFILES/nvim/.vimrc $HOME
-
-#rm -rf $HOME/.config/nvim/init.vim
-#ln -s $DOTFILES/nvim/.vimrc $HOME/.config/nvim/init.vim
+rm -rf $HOME/.config/nvim/init.vim
+ln -s $DOTFILES/nvim/init.vim $HOME/.config/nvim/init.vim
 
 rm -rf $HOME/.conkyrc
 rm -rf $HOME/.config/conky
@@ -21,4 +38,3 @@ mkdir -p $HOME/.config/conky
 
 rm -rf $HOME/.tmux.conf
 ln -s $DOTFILES/tmux/tmux.conf $HOME/.tmux.conf
-
