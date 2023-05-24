@@ -28,8 +28,8 @@ rm -rf $HOME/.bash_aliases
 ln -s $DOTFILES/alias/.bash_aliases $HOME
 source $HOME/.bash_aliases
 
-rm -rf $HOME/.config/nvim/init.vim
-ln -s $DOTFILES/nvim/init.vim $HOME/.config/nvim/init.vim
+rm -rf $HOME/.config/nvim
+ln -s $DOTFILES/nvim $HOME/.config/nvim
 
 rm -rf $HOME/.conkyrc
 rm -rf $HOME/.config/conky
