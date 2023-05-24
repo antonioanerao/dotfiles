@@ -28,8 +28,8 @@ use({
   'lewis6991/gitsigns.nvim',
   config = function()
     require('gitsigns').setup()
-    vim.keymap.set('n', 'nh', ':Gitsigns next_hunk<CR>')
-    vim.keymap.set('n', 'ph', ':Gitsigns prev_hunk<CR>')
+    vim.keymap.set('n', 'gnh', ':Gitsigns next_hunk<CR>')
+    vim.keymap.set('n', 'gph', ':Gitsigns prev_hunk<CR>')
     vim.keymap.set('n', 'ga', ':Gitsigns stage_hunk<CR>')
     vim.keymap.set('n', 'gu', ':Gitsigns undo_stage_hunk<CR>')
     vim.keymap.set('n', 'gp', ':Gitsigns preview_hunk<CR>')
@@ -183,6 +183,21 @@ use({
     vim.keymap.set('n', '<F1>', ':FloatermToggle<CR>')
     vim.keymap.set('t', '<F1>', '<C-\\><C-n>:FloatermToggle<CR>')
   end
+})
+
+-- Improved syntax highlighting
+use({
+  'nvim-treesitter/nvim-treesitter',
+  run = function()
+    require('nvim-treesitter.install').update({ with_sync = true })
+  end,
+  requires = {
+    'JoosepAlviste/nvim-ts-context-commentstring',
+    'nvim-treesitter/nvim-treesitter-textobjects',
+  },
+  config = function()
+    require('user/plugins/treesitter')
+  end,
 })
 
 if packer_bootstrap then
