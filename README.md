@@ -15,3 +15,17 @@ $ cd dotfile
 $ chmod +x install
 $ ./install
 ```
+
+#### LSP a serem instalados
+
+    #PHP
+    $ npm install -g intelephense
+
+    # Vue e JS
+    $ npm install -g @volar/vue-language-server
+
+    #Json
+    $ npm i -g vscode-langservers-extracted
+
+    #Dockerfile
+    $ npm install -g dockerfile-language-server-nodejs

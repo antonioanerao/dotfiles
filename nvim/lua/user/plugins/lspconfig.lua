@@ -25,7 +25,9 @@ require('lspconfig').jsonls.setup({
   },
 })
 
+-- Docker-compose e Dockerfile
 require('lspconfig').docker_compose_language_service.setup{}
+require('lspconfig').dockerls.setup{}
 
 -- Keymaps
 vim.keymap.set('n', '<Leader>d', '<cmd>lua vim.diagnostic.open_float()<CR>')
