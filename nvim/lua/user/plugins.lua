@@ -34,6 +34,7 @@ use({
     vim.keymap.set('n', 'gu', ':Gitsigns undo_stage_hunk<CR>')
     vim.keymap.set('n', 'gp', ':Gitsigns preview_hunk<CR>')
     vim.keymap.set('n', 'gb', ':Gitsigns blame_line<CR>')
+    vim.keymap.set('n', 'gA', ':Gitsigns stage_buffer<CR>')
   end,
 })
 
