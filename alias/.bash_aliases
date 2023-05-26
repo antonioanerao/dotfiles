@@ -34,3 +34,13 @@ alias tmux-s="tmux attach-session -t $1"
 
 ### Iniciar steam com placa de vídeo dedicada
 alias steam="DRI_PRIME=1 steam"
+
+### Trocar placa de vídeo entre nvidia ou intel
+alias nvidia="sudo prime-select nvidia"
+alias intel="sudo prime-select intel"
+
+
+### Atalhos para Laravel
+
+# Artisan
+alias a="php artisan"
