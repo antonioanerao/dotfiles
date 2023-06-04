@@ -112,6 +112,7 @@ use({
   'famiu/bufdelete.nvim',
   config = function()
     vim.keymap.set('n', '<Leader>q', ':Bdelete<CR>')
+    vim.keymap.set('n', '<Leader>w', ':bdelete<CR>')
   end,
 })
 
