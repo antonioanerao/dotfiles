@@ -2,6 +2,13 @@
 customNetstat() { sudo netstat -tulpn | grep --color :$@; }
 alias eporta='customNetstat'
 
+### Executa um teste do phpunit em uma aplicacao rodando dentro de um container
+### Parâmetro $1 aceita o nome do container
+### Parâmetro $2 aceita opcionalmente o caminho + nome de uma classe de teste
+### Exemplo de uso: docker exec -it nomeContainer tests/Feature/AuthTest.php
+dockerLaravelTest() { docker exec -it $1 ./vendor/bin/phpunit $2 --testdox; }
+alias dltest='dockerLaravelTest'
+
 ### Mata um processo com base no nome do programa
 kill_process() {
     process_name="$1"
