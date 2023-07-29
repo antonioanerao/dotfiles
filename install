@@ -1,40 +1,72 @@
 #!/usr/bin/env bash
 
+DOTFILES=$(cd $(dirname "${BASH_SOURCE[0]}") && pwd)
+
 function logStep() {
   echo -e "\n\e[1;32m$1\e[0m"
 }
 
-logStep "Initializing process"
+logStep "Processo de instalacao"
 
-DOTFILES=$(cd $(dirname "${BASH_SOURCE[0]}") && pwd)
+logStep "Instalando dependencias"
+sudo apt -y install wget git ninja-build gettext libtool libtool-bin autoconf automake cmake g++ pkg-config unzip curl doxygen lua5.4
+sudo DEBIAN_FRONTEND=noninteractive apt install -y composer
 
-logStep "Instaling RipGrep"
+if [[ -e "/usr/local/share/nvim/site/pack/packer/start/packer.nvim" ]]; then
+  logStep "Packer.nvim já está instalado"
+else
+  logStep "Clonando packer.nvim"
+  git clone --depth 1 https://github.com/wbthomason/packer.nvim /usr/local/share/nvim/site/pack/packer/start/packer.nvim
+fi
+
+cd
+logStep "Instalando NeoVim"
+if [[ -e "neovim" ]]; then
+  git pull
+else
+  git clone https://github.com/neovim/neovim
+fi
+cd neovim && make CMAKE_BUILD_TYPE=RelWithDebInfo
+sudo make install
+cd
+
+logStep "Instalando RipGrep"
 RIPGREP_VERSION=$(curl -s "https://api.github.com/repos/BurntSushi/ripgrep/releases/latest" | grep -Po '"tag_name": "\K[0-9.]+')
 wget -O ripgrep.deb "https://github.com/BurntSushi/ripgrep/releases/latest/download/ripgrep_${RIPGREP_VERSION}_amd64.deb"
 sudo dpkg -i ./ripgrep.deb
 rm -rf ripgrep.deb
 
-# Verifica se a pasta para dados já existe
+# Verifica se a pasta para fonts já existe
+logStep "Instalando Space Mono Nerd Font"
 if ! [ -d $HOME/.fonts ]; then
   mkdir $HOME/.fonts
 fi
-
 cp $DOTFILES/fonts/space-mono-nerd-font-complete-mono.ttf $HOME/.fonts
 
+logStep "Instalando Kitty"
+sudo apt -y install kitty
 rm -rf $HOME/.config/kitty
 ln -s $DOTFILES/kitty $HOME/.config/kitty
 
+logStep "Copiando .bash_aliases"
 rm -rf $HOME/.bash_aliases
 ln -s $DOTFILES/alias/.bash_aliases $HOME
 source $HOME/.bash_aliases
 
+logStep "Configurando Conky"
+sudo apt -y install conky
+rm -rf $HOME/.conkyrc
+rm -rf $HOME/.config/conky
+mkdir -p $HOME/.config/conky
+ln -s $DOTFILES/conky/.conkyrc $HOME
+
+logStep "Configurando TMUX"
+sudo apt -y install tmux
+rm -rf $HOME/.tmux.conf
+ln -s $DOTFILES/tmux/tmux.conf $HOME/.tmux.conf
+
+logStep "Copiando arquivos do nvim"
 rm -rf $HOME/.config/nvim
 ln -s $DOTFILES/nvim $HOME/.config/nvim
 
-rm -rf $HOME/.conkyrc
-rm -rf $HOME/.config/conky
-ln -s $DOTFILES/conky/.conkyrc $HOME
-mkdir -p $HOME/.config/conky
-
-rm -rf $HOME/.tmux.conf
-ln -s $DOTFILES/tmux/tmux.conf $HOME/.tmux.conf
+logStep "Instalação concluída. Abra o nvim"
