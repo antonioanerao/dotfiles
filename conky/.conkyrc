@@ -43,10 +43,10 @@ File System: $alignr${fs_type}
 Processes: $alignr ${execi 1000 ps aux | wc -l}
 
 ${font sans-serif:bold:size=10}GPU ${hr 2}
-${font sans-serif:normal:size=9}Model $alignr ${exec intel-smi --query-gpu=gpu_name --format=csv,noheader,nounits}
-Temperature $alignr ${execi 60 intel-settings -query [gpu:0]/GPUCoreTemp -t} °C
-GPU Utilization $alignr ${exec intel-smi | grep % | cut -c 61-63} %
-VRAM Utilization $alignr ${exec intel-smi | grep % | cut -c 37-40} MB
+${font sans-serif:normal:size=9}Model $alignr ${exec nvidia-smi --query-gpu=gpu_name --format=csv,noheader,nounits}
+Temperature $alignr ${execi 60 nvidia-settings -query [gpu:0]/GPUCoreTemp -t} °C
+GPU Utilization $alignr ${exec nvidia-smi | grep % | cut -c 61-63} %
+VRAM Utilization $alignr ${exec nvidia-smi | grep % | cut -c 37-40} MB
 
 ${font sans-serif:bold:size=10}CPU ${hr 2}
 ${font sans-serif:normal:size=9}${execi 1000 grep model /proc/cpuinfo | cut -d : -f2 | tail -1 | sed 's/\s//'}

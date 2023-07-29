@@ -1,30 +1,5 @@
-snippet pubf "public method"
-	public function ${1}(${2}): $3
-	{
-		${0}
-	}
-
-snippet prof "protected method"
-	protected function ${1}(${2}): $3
-	{
-		${0}
-	}
-
-snippet prif "private method"
-	protected function ${1}(${2}): $3
-	{
-		${0}
-	}
-
 snippet testt "test method (prefix)"
 	public function test_${1}()
-	{
-		${0}
-	}
-
-snippet testa "test method (annotation)"
-	/** @test */
-	public function ${1}()
 	{
 		${0}
 	}
@@ -33,8 +8,29 @@ snippet phpdoc "Gera bloco do PHPDOC"
 	/**
 	 * ${0}
 	 *
-	 *
 	 */
+
+snippet lmodel "Preenche o model com informacoes padrao para o SIGEP"
+	<?php
+
+	namespace App\Models;
+
+	use Illuminate\Database\Eloquent\Factories\HasFactory;
+	use Illuminate\Database\Eloquent\Model;
+
+	config('app.database') == 'sqlite' ?
+		define('${1}_TABLE_NAME', '${2}') :
+		define('${1}_TABLE_NAME', '${4}.${2}');
+
+	class ${5} extends Model
+	{
+		use HasFactory;
+
+		protected $$table = ${1}_TABLE_NAME;
+		protected $$primaryKey = '${6}';
+
+		${0}
+	}
 
 snippet migration "migration sigep"
 	<?php
