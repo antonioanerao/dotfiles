@@ -1,5 +1,9 @@
 ### Instalador dos meus arquivos dotfiles
 
+<img alt="Neovim" src="nvim-ide.png" width="100%">
+
+<hr>
+
 #### Como rodar
 
 Clone este repositório
