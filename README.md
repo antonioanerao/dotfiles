@@ -29,3 +29,5 @@ $ ./install
 
     #Dockerfile
     $ npm install -g dockerfile-language-server-nodejs
+
+* Você pode testar minha configuração usando minha imagem docker de teste: https://hub.docker.com/r/antonioanerao/nvim-ide
