@@ -32,6 +32,8 @@ $ ./install
     $ npm i -g vscode-langservers-extracted
 
     #Dockerfile
+    $ npm install -g @microsoft/compose-language-service
     $ npm install -g dockerfile-language-server-nodejs
 
+* [Lista de LSP disponíveis](https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md)
 * Você pode testar minha configuração usando minha imagem docker de teste: https://hub.docker.com/r/antonioanerao/nvim-ide
