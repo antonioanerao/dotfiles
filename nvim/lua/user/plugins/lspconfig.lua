@@ -10,9 +10,24 @@ require('lspconfig').intelephense.setup({ capabilities = capabilities })
 -- Vue, JavaScript, TypeScript
 require('lspconfig').volar.setup({
   capabilities = capabilities,
-  -- Enable "Take Over Mode" where volar will provide all JS/TS LSP services
-  -- This drastically improves the responsiveness of diagnostic updates on change
-  filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
+  filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'json', 'php' },
+  init_options = {
+    typescript = {
+      -- path to typescript lib folder
+      tsdk = '/usr/lib/node_modules/typescript/lib'
+    }
+  }
+})
+
+-- Tailwind
+require('lspconfig').tailwindcss.setup({
+  filetypes = { 
+    "aspnetcorerazor", "astro", "astro-markdown", "blade", "clojure", "django-html", "htmldjango", 
+    "edge", "eelixir", "elixir", "ejs", "erb", "eruby", "gohtml", "haml", "handlebars", "hbs", "html", 
+    "html-eex", "heex", "jade", "leaf", "liquid", "markdown", "mdx", "mustache", "njk", "nunjucks", 
+    "php", "razor", "slim", "twig", "css", "less", "postcss", "sass", "scss", "stylus", 
+    "sugarss", "javascript", "javascriptreact", "reason", "rescript", "typescript", "typescriptreact", "vue", "svelte"
+  } 
 })
 
 -- JSON
