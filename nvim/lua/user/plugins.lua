@@ -219,6 +219,7 @@ use({
     'williamboman/mason.nvim',
     'williamboman/mason-lspconfig.nvim',
     'b0o/schemastore.nvim',
+    'github/copilot.vim',
   },
   config = function()
     require('user/plugins/lspconfig')

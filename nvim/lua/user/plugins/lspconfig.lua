@@ -14,7 +14,7 @@ require('lspconfig').volar.setup({
   init_options = {
     typescript = {
       -- path to typescript lib folder
-      tsdk = '/usr/lib/node_modules/typescript/lib'
+      tsdk = '/home/antonio/.nvm/versions/node/v18.17.1/lib/node_modules/typescript/lib'
     }
   }
 })
@@ -67,3 +67,23 @@ vim.fn.sign_define('DiagnosticSignError', { text = '', texthl = 'DiagnosticSi
 vim.fn.sign_define('DiagnosticSignWarn', { text = '', texthl = 'DiagnosticSignWarn' })
 vim.fn.sign_define('DiagnosticSignInfo', { text = '', texthl = 'DiagnosticSignInfo' })
 vim.fn.sign_define('DiagnosticSignHint', { text = '', texthl = 'DiagnosticSignHint' })
+
+-- Copilot configuration
+vim.cmd([[
+  " Alt + Enter para aceitar sugestão
+  let g:copilot_no_tab_map = v:true
+  imap <silent><script><expr> <M-CR> copilot#Accept("\<CR>")
+  
+  " Ativar para o seguintes tipos de arquivos
+  let g:copilot_filetypes = {
+    \ '*': v:false,
+    \ 'python': v:true,
+    \ 'lua': v:true,
+    \ 'php': v:true,
+  \ }
+
+  " Cor da sugestão em #555555
+  highlight CopilotSuggestion guifg=#555555 ctermfg=8
+]])
+
+
