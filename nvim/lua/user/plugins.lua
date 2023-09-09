@@ -246,6 +246,19 @@ use({
   end,
 })
 
+-- ChatCPT. See the repository to instructions
+use({
+  "jackMort/ChatGPT.nvim",
+    config = function()
+      require("chatgpt").setup()
+    end,
+    requires = {
+      "MunifTanjim/nui.nvim",
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope.nvim"
+    }
+})
+
 -- PHP Refactoring Tools
 use({
   'phpactor/phpactor',
@@ -256,7 +269,6 @@ use({
     vim.keymap.set('n', '<Leader>pn', ':PhpactorClassNew<CR>')
   end,
 })
-
 
 if packer_bootstrap then
     require('packer').sync()
