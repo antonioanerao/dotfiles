@@ -91,6 +91,9 @@ use('nelstrom/vim-visual-star-search')
 -- Automatically create parent dirs when saving.
 use('jessarcher/vim-heritage')
 
+-- Highlight html and blade files
+use('jwalton512/vim-blade')
+
 -- Automatically add closing brackets, quotes, etc.
 use({
   'windwp/nvim-autopairs',
