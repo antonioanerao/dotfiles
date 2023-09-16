@@ -5,7 +5,23 @@ require('mason-lspconfig').setup({ automatic_installation = true })
 local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 -- PHP
-require('lspconfig').intelephense.setup({ capabilities = capabilities })
+require('lspconfig').intelephense.setup({
+  commands = {
+    IntelephenseIndex = {
+      function()
+        vim.lsp.buf.execute_command({ command = 'intelephense.index.workspace' })
+      end,
+    },
+  },
+  on_attach = function(client, bufnr)
+    client.server_capabilities.documentFormattingProvider = false
+    client.server_capabilities.documentRangeFormattingProvider = false
+    -- if client.server_capabilities.inlayHintProvider then
+    --   vim.lsp.buf.inlay_hint(bufnr, true)
+    -- end
+  end,
+  capabilities = capabilities
+})
 
 -- HTML
 require'lspconfig'.html.setup({
@@ -16,26 +32,21 @@ require'lspconfig'.html.setup({
 
 -- Vue, JavaScript, TypeScript
 require('lspconfig').volar.setup({
+  on_attach = function(client, bufnr)
+    client.server_capabilities.documentFormattingProvider = false
+    client.server_capabilities.documentRangeFormattingProvider = false
+    -- if client.server_capabilities.inlayHintProvider then
+    --   vim.lsp.buf.inlay_hint(bufnr, true)
+    -- end
+  end,
   capabilities = capabilities,
-  filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'json', 'php' },
-  init_options = {
-    typescript = {
-      -- path to typescript lib folder
-      tsdk = '/home/antonio/.nvm/versions/node/v18.17.1/lib/node_modules/typescript/lib'
-    }
-  }
+  -- Enable "Take Over Mode" where volar will provide all JS/TS LSP services
+  -- This drastically improves the responsiveness of diagnostic updates on change
+  filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
 })
 
 -- Tailwind
-require('lspconfig').tailwindcss.setup({
-  filetypes = { 
-    "aspnetcorerazor", "astro", "astro-markdown", "blade", "clojure", "django-html", "htmldjango", 
-    "edge", "eelixir", "elixir", "ejs", "erb", "eruby", "gohtml", "haml", "handlebars", "hbs", "html", 
-    "html-eex", "heex", "jade", "leaf", "liquid", "markdown", "mdx", "mustache", "njk", "nunjucks", 
-    "php", "razor", "slim", "twig", "css", "less", "postcss", "sass", "scss", "stylus", 
-    "sugarss", "javascript", "javascriptreact", "reason", "rescript", "typescript", "typescriptreact", "vue", "svelte"
-  } 
-})
+require('lspconfig').tailwindcss.setup({ capabilities = capabilities })
 
 -- JSON
 require('lspconfig').jsonls.setup({
@@ -87,10 +98,11 @@ vim.cmd([[
     \ 'python': v:true,
     \ 'lua': v:true,
     \ 'php': v:true,
+    \ 'javascript': v:true,
+    \ 'html': v:true,
+    \ 'typescript': v:true,
   \ }
 
   " Cor da sugestão em #555555
   highlight CopilotSuggestion guifg=#555555 ctermfg=8
 ]])
-
-

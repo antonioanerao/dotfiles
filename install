@@ -69,4 +69,10 @@ logStep "Copiando arquivos do nvim"
 rm -rf $HOME/.config/nvim
 ln -s $DOTFILES/nvim $HOME/.config/nvim
 
+logStep "ZSH"
+ln -sf $DOTFILES/zsh/zshrc $HOME/.zshrc
+if [ ! -d "$HOME/.oh-my-zsh" ]; then
+    KEEP_ZSHRC=yes sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+fi
+
 logStep "Instalação concluída. Abra o nvim"
