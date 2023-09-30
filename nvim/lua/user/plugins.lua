@@ -165,10 +165,27 @@ use({
 
 -- Display indentation lines.
 use({
-  'lukas-reineke/indent-blankline.nvim',
-  config = function()
-    require('user/plugins/indent-blankline')
-  end,
+  "lukas-reineke/indent-blankline.nvim",
+    config = function()
+      require("ibl").setup {
+        exclude = {
+          filetypes = {
+            'help',
+            'terminal',
+            'dashboard',
+            'packer',
+            'lspinfo',
+            'TelescopePrompt',
+            'TelescopeResults',
+          },
+          buftype_exclude = {
+            'terminal',
+            'NvimTree',
+          },
+        },
+        indent = { highlight = "IndentBlanklineChar" },
+      }
+    end
 })
 
 --- Floating terminal.
