@@ -125,6 +125,9 @@ alias steam="DRI_PRIME=1 steam"
 alias nvidia="sudo prime-select nvidia"
 alias intel="sudo prime-select intel"
 
+### TMATE com nome de sessão e authorized_keys
+alias tmate="tmate -k $TMATE_API_KEY -a ~/.ssh/authorized_keys $1 $2"
+
 alias ls="logo-ls"
 
 ### Weather
