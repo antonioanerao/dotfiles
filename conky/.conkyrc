@@ -42,9 +42,10 @@ Processes: $alignr ${execi 1000 ps aux | wc -l}
 
 ${font sans-serif:bold:size=10}GPU ${hr 2}
 ${font sans-serif:normal:size=9}Model $alignr ${exec nvidia-smi --query-gpu=gpu_name --format=csv,noheader,nounits}
-Temperature $alignr ${execi 60 nvidia-settings -query [gpu:0]/GPUCoreTemp -t} °C
-GPU Utilization $alignr ${exec nvidia-smi | grep % | cut -c 61-63} %
-VRAM Utilization $alignr ${exec nvidia-smi | grep % | cut -c 37-40} MB
+Temperature $alignr ${execi 1 nvidia-settings -query [gpu:0]/GPUCoreTemp -t} °C
+GPU Utilization $alignr ${execi 1 nvidia-smi --query-gpu=utilization.gpu --format=csv,noheader,nounits} %
+VRAM Utilization $alignr ${execi 1 nvidia-smi --query-gpu=memory.used --format=csv,noheader,nounits} Mb / ${execi 1 nvidia-smi --query-gpu=memory.total --format=csv,noheader,nounits } MB
+VRAM Free $alignr ${execi 1 nvidia-smi --query-gpu=memory.free --format=csv,noheader,nounits} MB
 
 ${font sans-serif:bold:size=10}CPU ${hr 2}
 ${font sans-serif:normal:size=9}${execi 1000 grep model /proc/cpuinfo | cut -d : -f2 | tail -1 | sed 's/\s//'}
@@ -61,6 +62,8 @@ ${font sans-serif:normal:size=8}/ $alignc ${fs_used /} / ${fs_size /} $alignr ${
 ${fs_bar /}
 ${voffset 2}${font sans-serif:normal:size=8}/home $alignc ${fs_used /home} / ${fs_size /home} $alignr ${fs_used_perc /home}%
 ${fs_bar /home}
+${voffset 2}${font sans-serif:normal:size=8}/ai-models $alignc ${fs_used /ai-models} / ${fs_size /ai-models} $alignr ${fs_used_perc /ai-models}%
+${fs_bar /ai-models}
 
 ${font sans-serif:bold:size=10}NETWORK ${hr 2}
 ${font sans-serif:normal:size=8}Local IPs:${alignr}External IP:
