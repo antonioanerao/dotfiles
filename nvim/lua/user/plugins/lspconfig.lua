@@ -62,6 +62,8 @@ require('lspconfig').jsonls.setup({
 require('lspconfig').docker_compose_language_service.setup{}
 require('lspconfig').dockerls.setup{}
 
+require('lspconfig').anakin_language_server.setup{}
+
 -- Keymaps
 vim.keymap.set('n', '<Leader>d', '<cmd>lua vim.diagnostic.open_float()<CR>')
 vim.keymap.set('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>')

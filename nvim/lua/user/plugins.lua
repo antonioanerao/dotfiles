@@ -255,6 +255,13 @@ use({
   end,
 })
 
+use({
+  'JoosepAlviste/nvim-ts-context-commentstring',
+  config = function()
+    vim.g.skip_ts_context_commentstring_module = true
+  end,
+})
+
 if packer_bootstrap then
     require('packer').sync()
 end
