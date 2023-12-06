@@ -69,6 +69,10 @@ logStep "Copiando arquivos do nvim"
 rm -rf $HOME/.config/nvim
 ln -s $DOTFILES/nvim $HOME/.config/nvim
 
+logStep "Copiando pycodestyle"
+rm $HOME/.config/pycodestyle
+ln -s $DOTFILES/config/pycodestyle $HOME/.config/pycodestyle
+
 logStep "ZSH"
 ln -sf $DOTFILES/zsh/zshrc $HOME/.zshrc
 if [ ! -d "$HOME/.oh-my-zsh" ]; then
