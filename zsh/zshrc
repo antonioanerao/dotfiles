@@ -99,6 +99,10 @@ kill_process() {
 }
 alias matar="kill_process $1"
 
+### Habilita/Desabilita luz teclado notebook dell 
+alias teclado-on="sudo brightnessctl --device='dell::kbd_backlight' set 1"
+alias teclado-off="sudo brightnessctl --device='dell::kbd_backlight' set 0"
+
 ### Adiciona permissões necessárias para rodar um projeto Laravel de forma segura
 alias lpermissao="sudo chgrp -R www-data storage bootstrap/cache && sudo chmod -R ug+rwx storage bootstrap/cache"
 
