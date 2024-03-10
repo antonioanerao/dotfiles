@@ -62,6 +62,7 @@ require('lspconfig').jsonls.setup({
 require('lspconfig').docker_compose_language_service.setup{}
 require('lspconfig').dockerls.setup{}
 
+-- Python
 require('lspconfig').anakin_language_server.setup{}
 
 -- Keymaps
@@ -100,9 +101,7 @@ vim.cmd([[
     \ 'python': v:true,
     \ 'lua': v:true,
     \ 'php': v:true,
-    \ 'javascript': v:true,
     \ 'html': v:true,
-    \ 'typescript': v:true,
   \ }
 
   " Cor da sugestão em #555555
