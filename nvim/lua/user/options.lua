@@ -26,6 +26,15 @@ vim.opt.wildmode = 'longest:full,full' -- complete the longest common match, and
 vim.opt.shortmess:append({ I = true }) -- disable the splash screen
 vim.opt.completeopt = 'menuone,longest,preview'
 
+--- Adiciona corretor pt-br para arquivos markdown
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "markdown",
+  callback = function()
+    vim.opt_local.spell = true
+    vim.opt_local.spelllang = { "pt_br" }
+  end,
+})
+
 --vim.opt.showmode = false
 --vim.opt.updatetime = 4001 -- Set updatime to 1ms longer than the default to prevent polyglot from changing it
 --vim.opt.redrawtime = 10000 -- Allow more time for loading syntax on large files
