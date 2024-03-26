@@ -32,7 +32,8 @@ cd
 
 logStep "Instalando RipGrep"
 RIPGREP_VERSION=$(curl -s "https://api.github.com/repos/BurntSushi/ripgrep/releases/latest" | grep -Po '"tag_name": "\K[0-9.]+')
-wget -O ripgrep.deb "https://github.com/BurntSushi/ripgrep/releases/latest/download/ripgrep_${RIPGREP_VERSION}_amd64.deb"
+#wget -O ripgrep.deb "https://github.com/BurntSushi/ripgrep/releases/download/${RIPGREP_VERSION}/ripgrep_${RIPGREP_VERSION}_amd64.deb"
+wget -O ripgrep.deb "https://github.com/BurntSushi/ripgrep/releases/download/14.1.0/ripgrep_14.1.0-1_amd64.deb"
 sudo dpkg -i ./ripgrep.deb
 rm -rf ripgrep.deb
 
@@ -74,9 +75,15 @@ rm $HOME/.config/pycodestyle
 ln -s $DOTFILES/config/pycodestyle $HOME/.config/pycodestyle
 
 logStep "ZSH"
+sudo apt -y install zsh
 ln -sf $DOTFILES/zsh/zshrc $HOME/.zshrc
 if [ ! -d "$HOME/.oh-my-zsh" ]; then
     KEEP_ZSHRC=yes sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 fi
+chsh -s $(which zsh)
+sudo chsh -s $(which zsh)
 
-logStep "Instalação concluída. Abra o nvim"
+logStep "NVM"
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash 
+
+logStep "Instalações concluídas"
