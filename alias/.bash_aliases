@@ -46,8 +46,6 @@ alias steam="DRI_PRIME=1 steam"
 alias nvidia="sudo prime-select nvidia"
 alias intel="sudo prime-select intel"
 
-alias ls="logo-ls"
-
 ### Atalhos para Laravel
 
 # Artisan
