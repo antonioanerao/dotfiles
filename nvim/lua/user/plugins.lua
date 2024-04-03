@@ -23,21 +23,6 @@ require('packer').init({
 
 local use = require('packer').use
 
--- Git integration.
-use({
-  'lewis6991/gitsigns.nvim',
-  config = function()
-    require('gitsigns').setup()
-    vim.keymap.set('n', 'gnh', ':Gitsigns next_hunk<CR>')
-    vim.keymap.set('n', 'gph', ':Gitsigns prev_hunk<CR>')
-    vim.keymap.set('n', 'ga', ':Gitsigns stage_hunk<CR>')
-    vim.keymap.set('n', 'gu', ':Gitsigns undo_stage_hunk<CR>')
-    vim.keymap.set('n', 'gp', ':Gitsigns preview_hunk<CR>')
-    vim.keymap.set('n', 'gb', ':Gitsigns blame_line<CR>')
-    vim.keymap.set('n', 'gA', ':Gitsigns stage_buffer<CR>')
-  end,
-})
-
 -- One Dark theme.
 use({
   'jessarcher/onedark.nvim',
@@ -92,26 +77,28 @@ use({
   end,
 })
 
+-- Git integration.
+use({
+  'lewis6991/gitsigns.nvim',
+  config = function()
+    require('gitsigns').setup()
+    require('user/plugins/gitsigns')
+  end,
+})
+
 -- All closing buffers without closing the split window.
 use({
   'famiu/bufdelete.nvim',
   config = function()
-    vim.keymap.set('n', '<Leader>q', ':Bdelete<CR>')
-    vim.keymap.set('n', '<Leader>w', ':bdelete<CR>')
+    require('user/plugins/bufdelete')
   end,
 })
 
--- Split arrays and methods onto multiple lines, or join them back up. Keep cursor at the bracket
--- gS = split to multiple lines
--- gJ split to single line
+-- Split arrays and methods onto multiple lines, or join them back up. 
 use({
   'AndrewRadev/splitjoin.vim',
   config = function()
-    vim.g.splitjoin_html_attributes_bracket_on_new_line = 1
-    vim.g.splitjoin_trailing_comma = 1
-    vim.g.splitjoin_php_method_chain_full = 1
-    vim.keymap.set('n', '<F3>', ':SplitjoinSplit<CR>')
-    vim.keymap.set('n', '<F4>', ':SplitjoinJoin<CR>')
+    require('user/plugins/splitjoin')
   end,
 })
 
@@ -119,7 +106,7 @@ use({
 use({
   'sickill/vim-pasta',
   config = function()
-    vim.g.pasta_disabled_filetypes = { 'fugitive' }
+    require('user/plugins/vim-pasta')
   end,
 })
 
@@ -177,11 +164,8 @@ use({
 use({
   'voldikss/vim-floaterm',
   config = function()
-    vim.g.floaterm_width = 0.6
-    vim.g.floaterm_height = 0.6
-    vim.keymap.set('n', '<F1>', ':FloatermToggle<CR>')
-    vim.keymap.set('t', '<F1>', '<C-\\><C-n>:FloatermToggle<CR>')
-  end
+    require('user/plugins/vim-floaterm')
+  end,
 })
 
 -- Improved syntax highlighting
@@ -236,16 +220,15 @@ use({
   ft = 'php',
   run = 'composer install --no-dev --optimize-autoloader',
   config = function()
-    vim.keymap.set('n', '<Leader>pm', ':PhpactorContextMenu<CR>')
-    vim.keymap.set('n', '<Leader>pn', ':PhpactorClassNew<CR>')
-    vim.keymap.set('n', '<F2>', ':PhpactorFindReferences<CR>')
+    require('user/plugins/phpactor')
   end,
 })
 
+-- A plugin for setting the commentstring option based on the cursor location in the file
 use({
   'JoosepAlviste/nvim-ts-context-commentstring',
   config = function()
-    vim.g.skip_ts_context_commentstring_module = true
+    require('user/plugins/nvim-ts-context-commentstring')
   end,
 })
 

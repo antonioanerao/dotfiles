@@ -1,0 +1,7 @@
+vim.keymap.set('n', 'gnh', ':Gitsigns next_hunk<CR>')
+vim.keymap.set('n', 'gph', ':Gitsigns prev_hunk<CR>')
+vim.keymap.set('n', 'ga', ':Gitsigns stage_hunk<CR>')
+vim.keymap.set('n', 'gu', ':Gitsigns undo_stage_hunk<CR>')
+vim.keymap.set('n', 'gp', ':Gitsigns preview_hunk<CR>')
+vim.keymap.set('n', 'gb', ':Gitsigns blame_line<CR>')
+vim.keymap.set('n', 'gA', ':Gitsigns stage_buffer<CR>')
