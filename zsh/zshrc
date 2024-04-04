@@ -133,6 +133,9 @@ alias tmate="tmate -k $TMATE_API_KEY -a ~/.ssh/authorized_keys $1 $2"
 
 alias tmux-new="tmux new -s $1"
 
+### Abrir diretório atual
+alias abrir="nautilus ."
+
 ### Weather
 function weather() {
    echo "Carregando informações do tempo...\n"

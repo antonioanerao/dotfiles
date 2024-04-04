@@ -31,6 +31,35 @@ use({
   end,
 })
 
+-- Dashboard
+use({
+  'nvimdev/dashboard-nvim',
+  event = 'VimEnter',
+  config = function()
+    require('dashboard').setup {
+      theme = 'hyper',
+      config = {
+        week_header = {
+         enable = false,
+        },
+        shortcut = {
+          { desc = '󰊳 Update', group = '@property', action = 'PackerSync', key = 'u' },
+          {
+            icon = ' ',
+            icon_hl = '@variable',
+            desc = 'Files',
+            group = 'Label',
+            action = 'Telescope find_files',
+            key = 'f',
+          },
+        },
+        footer = {},
+      },
+    }
+  end,
+  requires = {'nvim-tree/nvim-web-devicons'}
+})
+
 -- Packer can manage itself
 use 'wbthomason/packer.nvim'
 
