@@ -43,7 +43,8 @@ use({
          enable = false,
         },
         shortcut = {
-          { desc = '󰊳 Update', group = '@property', action = 'PackerSync', key = 'u' },
+          { icon = ' ', icon_hl = '@variable', desc = 'Update', group = '@property', action = 'PackerSync', key = 'u' },
+          { icon = ' ', icon_hl = '@variable', desc = 'Tree', group = '@property', action = 'NvimTreeFindFile', key = 't' },
           {
             icon = ' ',
             icon_hl = '@variable',
@@ -51,6 +52,14 @@ use({
             group = 'Label',
             action = 'Telescope find_files',
             key = 'f',
+          },
+          {
+            icon = ' ',
+            icon_hl = '@variable',
+            desc = 'Search',
+            group = 'Label',
+            action = 'Telescope live_grep',
+            key = 's',
           },
         },
         footer = {},
