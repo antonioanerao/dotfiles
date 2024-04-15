@@ -162,6 +162,14 @@ use({
   end,
 })
 
+--Tests 
+use({
+  'vim-test/vim-test',
+  config = function()
+    require('user/plugins/vim-test')
+  end,
+})
+
 -- File tree sidebar
 use({
   'kyazdani42/nvim-tree.lua',
