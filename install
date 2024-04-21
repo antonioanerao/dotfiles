@@ -60,6 +60,8 @@ rm -rf $HOME/.conkyrc
 rm -rf $HOME/.config/conky
 mkdir -p $HOME/.config/conky
 ln -s $DOTFILES/conky/.conkyrc $HOME
+ln -s $DOTFILES/conky/.docker-conky.sh $HOME
+sudo chmod u+x ~/.docker-conky.sh
 
 logStep "Configurando TMUX"
 sudo apt -y install tmux
