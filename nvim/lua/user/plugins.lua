@@ -190,7 +190,7 @@ use({
 
 -- Display buffers as tabs.
 use({
-  'akinsho/bufferline.nvim',
+  'akinsho/bufferline.nvim', branch = 'v4.5.2',
   requires = 'kyazdani42/nvim-web-devicons',
   after = 'onedark.nvim',
   config = function()
