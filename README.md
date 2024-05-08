@@ -12,7 +12,7 @@ Clone este repositório
 $ git clone https://github.com/antonioanerao/dotfiles.git
 ```
     
-Acesse a pasta do repositório, atriba permissão de execução para o arquivo _install_ e execute-o
+Acesse a pasta do repositório, atribua permissão de execução para o arquivo _install_ e execute-o
 
 ``` bash
 $ cd dotfile
