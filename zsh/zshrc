@@ -74,6 +74,9 @@ unsetopt sharehistory
 # Aliases
 #--------------------------------------------------------------------------
 
+### Montar pasta de compartilhamento
+alias shared="sudo mount -t cifs //192.168.0.22/network /home/antonio/shared-antonio-ubuntu-notebook -o user=antonio,password=351798,uid=antonio,gid=antonio"
+
 alias vim="nvim"
 
 ### Escutar determinada porta
