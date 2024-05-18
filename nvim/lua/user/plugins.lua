@@ -31,6 +31,8 @@ use({
   end,
 })
 
+use({'nvim-tree/nvim-web-devicons'})
+
 -- Dashboard
 use({
   'nvimdev/dashboard-nvim',
@@ -76,13 +78,13 @@ use 'wbthomason/packer.nvim'
 use 'tpope/vim-commentary'
 
 -- Add, change and delete surrounding text. https://github.com/tpope/vim-surround
-use('tpope/vim-surround')
+-- use('tpope/vim-surround')
 
 -- Ident autodetection
 use('tpope/vim-sleuth')
 
 -- Allow plugins to enable repeating of commands pressig .
-use('tpope/vim-repeat')
+-- use('tpope/vim-repeat')
 
 -- Navigate seamlessly between Vim windows and Tmux panes.
 use('christoomey/vim-tmux-navigator')
@@ -98,6 +100,14 @@ use('jessarcher/vim-heritage')
 
 -- Highlight html and blade files
 use('jwalton512/vim-blade')
+
+-- Markdown
+use({
+  "tadmccorkle/markdown.nvim",
+  config = function()
+    require("markdown").setup({})
+  end,
+})
 
 -- Automatically add closing brackets, quotes, etc.
 use({
@@ -153,7 +163,7 @@ use({
   'nvim-telescope/telescope.nvim',
   requires = {
     'nvim-lua/plenary.nvim',
-    'kyazdani42/nvim-web-devicons',
+    'nvim-tree/nvim-web-devicons',
     'nvim-telescope/telescope-live-grep-args.nvim',
     { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
   },
@@ -172,8 +182,8 @@ use({
 
 -- File tree sidebar
 use({
-  'kyazdani42/nvim-tree.lua',
-  requires = 'kyazdani42/nvim-web-devicons',
+  'nvim-tree/nvim-tree.lua',
+  requires = 'nvim-tree/nvim-web-devicons',
   config = function()
     require('user/plugins/nvim-tree')
   end,
@@ -182,7 +192,7 @@ use({
 -- A Status line.
 use({
   'nvim-lualine/lualine.nvim',
-  requires = 'kyazdani42/nvim-web-devicons',
+  requires = 'nvim-tree/nvim-web-devicons',
   config = function()
     require('user/plugins/lualine')
   end,
@@ -190,8 +200,8 @@ use({
 
 -- Display buffers as tabs.
 use({
-  'akinsho/bufferline.nvim', branch = 'v4.5.2',
-  requires = 'kyazdani42/nvim-web-devicons',
+  'akinsho/bufferline.nvim',
+  requires = 'nvim-tree/nvim-web-devicons',
   after = 'onedark.nvim',
   config = function()
     require('user/plugins/bufferline')
