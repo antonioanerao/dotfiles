@@ -241,7 +241,7 @@ use({
 
 -- Language Server Protocol.
 use({
-  'neovim/nvim-lspconfig',
+  'neovim/nvim-lspconfig', commit = '9ea0e83a547017b8d88292d9cbbfae6c01c108c1',
   requires = {
     'williamboman/mason.nvim',
     'williamboman/mason-lspconfig.nvim',
