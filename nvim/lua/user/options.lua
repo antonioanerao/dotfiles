@@ -25,6 +25,8 @@ vim.opt.backupdir:remove('.') -- keep backups out of the current directory
 vim.opt.wildmode = 'longest:full,full' -- complete the longest common match, and allow tabbing the results to fully complete them
 vim.opt.shortmess:append({ I = true }) -- disable the splash screen
 vim.opt.completeopt = 'menuone,longest,preview'
+vim.opt.list = true
+vim.opt.listchars = { tab = '▸ ', trail = '·', extends = '>', precedes = '<', nbsp = '␣' }
 
 --- Adiciona corretor pt-br para arquivos markdown
 vim.api.nvim_create_autocmd("FileType", {
