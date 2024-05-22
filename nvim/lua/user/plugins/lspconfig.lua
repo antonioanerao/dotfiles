@@ -42,8 +42,26 @@ require('lspconfig').volar.setup({
   capabilities = capabilities,
   -- Enable "Take Over Mode" where volar will provide all JS/TS LSP services
   -- This drastically improves the responsiveness of diagnostic updates on change
-  filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
+  filetypes = { 'javascript', 'vue' },
 })
+
+-- TypeScript Server
+require'lspconfig'.tsserver.setup{
+  init_options = {
+    plugins = {
+      {
+        name = "@vue/typescript-plugin",
+        location = "/usr/local/lib/node_modules/@vue/typescript-plugin",
+        languages = {"javascript", "typescript", "vue"},
+      },
+    },
+  },
+  filetypes = {
+    "javascript",
+    "typescript",
+    "vue",
+  },
+}
 
 -- Tailwind
 require('lspconfig').tailwindcss.setup({ capabilities = capabilities })
@@ -102,6 +120,7 @@ vim.cmd([[
     \ 'lua': v:true,
     \ 'php': v:true,
     \ 'html': v:true,
+    \ 'javascript': v:true,
   \ }
 
   " Cor da sugestão em #555555
