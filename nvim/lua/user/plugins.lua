@@ -210,7 +210,7 @@ use({
 
 -- Display indentation lines.
 use({
-  'lukas-reineke/indent-blankline.nvim', branch = 'v2.20.8',
+  'lukas-reineke/indent-blankline.nvim',
   config = function()
     require('user/plugins/indent-blankline')
   end,
