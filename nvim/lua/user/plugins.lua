@@ -120,8 +120,15 @@ use({
 -- Add smooth scrolling to avoid jarring jumps
 use({
   'karb94/neoscroll.nvim',
+  event = { "BufReadPost", "BufNewFile" },
   config = function()
-    require('neoscroll').setup()
+    local opts = {
+        mappings = {
+          "<C-u>",
+          "<C-d>",
+        },
+      }
+      require("neoscroll").setup(opts)
   end,
 })
 
