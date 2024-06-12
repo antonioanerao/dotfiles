@@ -114,6 +114,12 @@ alias gchmod="git config core.fileMode false"
 ### Git log legal
 alias glog="git log --decorate --oneline --color --graph"
 
+### Git count dos commits
+alias gcount="git rev-list --count --all"
+
+### Listar repo original
+alias gremote="git config --get remote.origin.url"
+
 ### Abre o nvim ao invés do vim
 alias vim="nvim"
 
@@ -136,8 +142,18 @@ alias tmate="tmate -k $TMATE_API_KEY -a ~/.ssh/authorized_keys $1 $2"
 
 alias tmux-new="tmux new -s $1"
 
+alias ls="/usr/local/bin/logo-ls"
+alias fix-desktop="sudo apt -y install gnome-shell-extension-desktop-icons-ng && sudo apt -y install gnome-control-center && sudo systemctl restart gdm3"
+
 ### Abrir diretório atual
 alias abrir="nautilus ."
+
+### Atalhos docker
+alias dcr="docker container rm -f \$(docker ps -aq)"
+alias dcre="docker container rm -f \$(docker ps -aq -f status=exited)"
+alias du="docker compose up -d"
+alias dd="docker compose down"
+alias dp="docker ps -a"
 
 ### Weather
 function weather() {
