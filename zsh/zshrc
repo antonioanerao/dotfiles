@@ -168,8 +168,15 @@ function weather() {
 }
 
 ### Converter arquivo .webm para .mp4
-function webmToMp4() {
-    ffmpeg -i "$1".webm -vcodec libx264 -vf 'pad=ceil(iw/2)*2:ceil(ih/2)*2' -r 24 -y -an "$2".mp4 
+function ffmpeg-webm-mp4() {
+    ffmpeg -i "$1" -vcodec libx264 -vf 'pad=ceil(iw/2)*2:ceil(ih/2)*2' -r 24 -y -an "$2"
+}
+
+### Converter arquivo .mp4 para .mp3
+function ffmpeg-mp4-mp3() {
+    ffmpeg -i "$1" -vn \
+        -acodec libmp3lame -ac 2 -qscale:a 4 -ar 48000 \
+        "$2"
 }
 
 ### Fix slowness of pastes with zsh-syntax-highlighting.zsh
