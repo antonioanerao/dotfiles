@@ -13,6 +13,7 @@ vim.cmd([[
   highlight TelescopeResultsTitle guifg=#9AA1AD
   highlight TelescopePreviewTitle guifg=#9AA1AD
   highlight TelescopePromptPrefix guifg=#9AA1AD
+
   " highlight TelescopeBorder guifg=#d3d3d3 guibg=#1e222a
   " highlight TelescopeResultsBorder guifg=#777777 guibg=#30323E
   " highlight TelescopePreviewBorder guifg=#d3d3d3 guibg=#1e222a

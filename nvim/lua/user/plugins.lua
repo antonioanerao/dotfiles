@@ -25,9 +25,19 @@ local use = require('packer').use
 
 -- One Dark theme.
 use({
-  'jessarcher/onedark.nvim',
+  'rmehri01/onenord.nvim',
   config = function()
-    require('user/themes')
+    require('user/themes/onenord')
+  end,
+})
+
+-- Display buffers as tabs.
+use({
+  'akinsho/bufferline.nvim',
+  requires = 'nvim-tree/nvim-web-devicons',
+  after = 'onenord.nvim',
+  config = function()
+    require('user/plugins/bufferline')
   end,
 })
 
@@ -202,16 +212,6 @@ use({
   requires = 'nvim-tree/nvim-web-devicons',
   config = function()
     require('user/plugins/lualine')
-  end,
-})
-
--- Display buffers as tabs.
-use({
-  'akinsho/bufferline.nvim',
-  requires = 'nvim-tree/nvim-web-devicons',
-  after = 'onedark.nvim',
-  config = function()
-    require('user/plugins/bufferline')
   end,
 })
 
