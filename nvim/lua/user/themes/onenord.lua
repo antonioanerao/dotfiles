@@ -28,3 +28,13 @@ vim.cmd('colorscheme onenord')
 vim.api.nvim_set_hl(0, 'NormalFloat', { bg = '#1e222a', fg = '#abb2bf' })
 vim.api.nvim_set_hl(0, 'FloatBorder', { bg = '#1e222a', fg = '#1e222a' })
 
+-- Telescope
+vim.cmd([[
+  highlight TelescopePromptNormal guibg=#3b4252 guifg=#9aa1ad
+  highlight TelescopePromptCounter guifg=#9aa1ad
+  highlight TelescopePromptBorder guifg=#747474 guibg=#3b4252
+  highlight TelescopePromptTitle guifg=#9AA1AD
+  highlight TelescopeResultsTitle guifg=#9AA1AD
+  highlight TelescopePreviewTitle guifg=#9AA1AD
+  highlight TelescopePromptPrefix guifg=#9AA1AD
+]])
