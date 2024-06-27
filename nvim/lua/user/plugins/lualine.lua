@@ -11,7 +11,7 @@ require('lualine').setup({
     lualine_b = {
       'branch',
       'diff',
-      '"LSP: " .. tostring(#vim.tbl_keys(vim.lsp.buf_get_clients()))',
+      '"LSP: " .. tostring(#vim.tbl_keys(vim.lsp.get_clients()))',
       { 'diagnostics', sources = { 'nvim_diagnostic' } },
     },
     lualine_c = {
