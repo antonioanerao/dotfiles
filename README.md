@@ -35,5 +35,5 @@ $ ./install
     $ npm install -g @microsoft/compose-language-service
     $ npm install -g dockerfile-language-server-nodejs
 
-* [Lista de LSP disponíveis](https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md)
+* [Lista de LSP disponíveis]([https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md](https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md))
 * Você pode testar minha configuração usando minha imagem docker de teste: https://hub.docker.com/r/antonioanerao/nvim-ide
