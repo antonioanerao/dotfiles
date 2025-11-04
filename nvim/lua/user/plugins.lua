@@ -295,6 +295,12 @@ use({
   end,
 })
 
+-- Python indentation (PEP8-aware)
+use({
+  'Vimjas/vim-python-pep8-indent',
+  ft = 'python',
+})
+
 if packer_bootstrap then
     require('packer').sync()
 end
