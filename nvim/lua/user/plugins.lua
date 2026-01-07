@@ -234,6 +234,7 @@ use({
 -- Improved syntax highlighting
 use({
   'nvim-treesitter/nvim-treesitter',
+  branch="master",
   run = function()
     require('nvim-treesitter.install').update({ with_sync = true })
   end,
