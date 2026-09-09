@@ -142,7 +142,6 @@ alias tmate="tmate -k $TMATE_API_KEY -a ~/.ssh/authorized_keys $1 $2"
 
 alias tmux-new="tmux new -s $1"
 
-alias ls="/usr/local/bin/logo-ls"
 alias fix-desktop="sudo apt -y install gnome-shell-extension-desktop-icons-ng && sudo apt -y install gnome-control-center && sudo systemctl restart gdm3"
 
 ### Abrir diretório atual

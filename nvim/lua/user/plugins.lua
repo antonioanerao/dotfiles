@@ -246,7 +246,6 @@ use({
 -- Improved syntax highlighting
 use({
   'nvim-treesitter/nvim-treesitter',
-  branch = 'master',
   run = function()
     require('nvim-treesitter.install').update({ with_sync = true })
   end,
@@ -306,12 +305,6 @@ use({
   config = function()
     require('user/plugins/nvim-ts-context-commentstring')
   end,
-})
-
--- Python indentation (PEP8-aware)
-use({
-  'Vimjas/vim-python-pep8-indent',
-  ft = 'python',
 })
 
 if packer_bootstrap then
