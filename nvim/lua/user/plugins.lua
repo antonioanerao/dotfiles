@@ -142,6 +142,18 @@ use({
   end,
 })
 
+-- AI assistant / ACP client.
+use({
+  'olimorris/codecompanion.nvim',
+  requires = {
+    'nvim-lua/plenary.nvim',
+    'nvim-treesitter/nvim-treesitter',
+  },
+  config = function()
+    require('user/plugins/codecompanion')
+  end,
+})
+
 -- Git integration.
 use({
   'lewis6991/gitsigns.nvim',
