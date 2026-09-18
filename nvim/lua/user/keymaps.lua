@@ -47,3 +47,26 @@ vim.keymap.set('n', '<C-Right>', ':vertical resize +2<CR>')
 --vim.keymap.set('i', '<A-k>', '<Esc>:move .-2<CR>==gi')
 --vim.keymap.set('x', '<A-j>', ":move '>+1<CR>gv-gv")
 --vim.keymap.set('x', '<A-k>', ":move '<-2<CR>gv-gv")
+
+-- Molten - Executar linha atual
+vim.keymap.set(
+  'n',
+  '<leader>r',
+  ':MoltenEvaluateLine<CR>',
+  { desc = 'Executar linha no Molten' }
+)
+
+-- Executar seleção
+vim.keymap.set(
+  'v',
+  '<leader>r',
+  ':<C-u>MoltenEvaluateVisual<CR>',
+  { desc = 'Executar seleção no Molten' }
+)
+
+vim.keymap.set(
+  'n',
+  '<leader>mo',
+  ':noautocmd MoltenEnterOutput<CR>',
+  { silent = true, desc = 'Abrir/entrar no output do Molten' }
+)
