@@ -74,6 +74,26 @@ unsetopt sharehistory
 # Aliases
 #--------------------------------------------------------------------------
 
+create-ipykernel() {
+    py -m ipykernel install --user \
+        --name "$1" \
+        --display-name "Python ($1)"
+}
+
+delete-ipykernel() {
+    jupyter kernelspec uninstall "$1"
+}
+
+alias ginit="eval \$(ssh-agent) && ssh-add ~/.ssh/github && echo 'chave ssh inicializada'"
+
+alias list-ipykernel="jupyter kernelspec list"
+
+### Lista arquivos alterados, mesmo que em subpastas
+alias gstatus="git status --short --untracked-files=all"
+
+### Último log com autor, detalhes e sem pager
+alias glast="git --no-pager log -1 --decorate --graph --stat --pretty=format:'%h %d %s%nAutor: %an <%ae>%nData: %ad'"
+
 ### Montar pasta de compartilhamento
 alias shared="sudo mount -t cifs //192.168.0.22/network /home/antonio/shared-antonio-ubuntu-notebook -o user=antonio,password=351798,uid=antonio,gid=antonio"
 
