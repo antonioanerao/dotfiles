@@ -157,9 +157,12 @@ vim.lsp.enable('dockerls')
 -- Python
 -- ============================================================================
 
-vim.lsp.config('anakin_language_server', {})
-vim.lsp.enable('anakin_language_server')
+vim.lsp.config("anakin_language_server", {
+    cmd = { "anakinls" },
+    filetypes = { "python" },
+})
 
+vim.lsp.enable("anakin_language_server")
 
 -- ============================================================================
 -- Lua
