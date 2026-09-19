@@ -1,74 +1,137 @@
--- Setup Mason to automatically install LSP servers
+-- Mason
 require('mason').setup()
-require('mason-lspconfig').setup({ automatic_installation = true })
 
-local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
+require('mason-lspconfig').setup({
+  automatic_installation = true,
+})
 
--- PHP
-require('lspconfig').intelephense.setup({
+-- Capabilities do nvim-cmp
+local capabilities = require('cmp_nvim_lsp').default_capabilities(
+  vim.lsp.protocol.make_client_capabilities()
+)
+
+-- ============================================================================
+-- PHP - Intelephense
+-- ============================================================================
+
+vim.lsp.config('intelephense', {
   commands = {
     IntelephenseIndex = {
       function()
-        vim.lsp.buf.execute_command({ command = 'intelephense.index.workspace' })
+        vim.lsp.buf.execute_command({
+          command = 'intelephense.index.workspace',
+        })
       end,
     },
   },
+
   on_attach = function(client, bufnr)
     client.server_capabilities.documentFormattingProvider = false
     client.server_capabilities.documentRangeFormattingProvider = false
+
     -- if client.server_capabilities.inlayHintProvider then
-    --   vim.lsp.buf.inlay_hint(bufnr, true)
+    --   vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
     -- end
   end,
-  capabilities = capabilities
-})
 
--- HTML
-require'lspconfig'.html.setup({
-  filetypes = {
-    "html", "php", "blade", "vue"
-  }
-})
-
--- Vue, JavaScript, TypeScript
-require('lspconfig').volar.setup({
-  on_attach = function(client, bufnr)
-    client.server_capabilities.documentFormattingProvider = false
-    client.server_capabilities.documentRangeFormattingProvider = false
-    -- if client.server_capabilities.inlayHintProvider then
-    --   vim.lsp.buf.inlay_hint(bufnr, true)
-    -- end
-  end,
   capabilities = capabilities,
-  -- Enable "Take Over Mode" where volar will provide all JS/TS LSP services
-  -- This drastically improves the responsiveness of diagnostic updates on change
-  filetypes = { 'javascript', 'vue' },
 })
 
--- TypeScript Server
-require'lspconfig'.tsserver.setup{
+vim.lsp.enable('intelephense')
+
+
+-- ============================================================================
+-- HTML
+-- ============================================================================
+
+vim.lsp.config('html', {
+  filetypes = {
+    'html',
+    'php',
+    'blade',
+    'vue',
+  },
+
+  capabilities = capabilities,
+})
+
+vim.lsp.enable('html')
+
+
+-- ============================================================================
+-- Vue / JavaScript
+-- ============================================================================
+
+vim.lsp.config('volar', {
+  on_attach = function(client, bufnr)
+    client.server_capabilities.documentFormattingProvider = false
+    client.server_capabilities.documentRangeFormattingProvider = false
+
+    -- if client.server_capabilities.inlayHintProvider then
+    --   vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+    -- end
+  end,
+
+  capabilities = capabilities,
+
+  filetypes = {
+    'javascript',
+    'vue',
+  },
+})
+
+vim.lsp.enable('volar')
+
+
+-- ============================================================================
+-- TypeScript / JavaScript
+-- ============================================================================
+
+vim.lsp.config('ts_ls', {
   init_options = {
     plugins = {
       {
-        name = "@vue/typescript-plugin",
-        location = "/usr/local/lib/node_modules/@vue/typescript-plugin",
-        languages = {"javascript", "typescript", "vue"},
+        name = '@vue/typescript-plugin',
+        location = '/usr/local/lib/node_modules/@vue/typescript-plugin',
+        languages = {
+          'javascript',
+          'typescript',
+          'vue',
+        },
       },
     },
   },
+
   filetypes = {
-    "javascript",
-    "typescript",
-    "vue",
+    'javascript',
+    'typescript',
+    'vue',
   },
-}
 
--- Tailwind
-require('lspconfig').tailwindcss.setup({ capabilities = capabilities })
-
--- JSON
-require('lspconfig').jsonls.setup({
   capabilities = capabilities,
+})
+
+vim.lsp.enable('ts_ls')
+
+
+-- ============================================================================
+-- Tailwind CSS
+-- ============================================================================
+
+vim.lsp.config('tailwindcss', {
+  capabilities = capabilities,
+})
+
+vim.lsp.enable('tailwindcss')
+
+
+-- ============================================================================
+-- JSON
+-- ============================================================================
+
+vim.lsp.config('jsonls', {
+  capabilities = capabilities,
+
   settings = {
     json = {
       schemas = require('schemastore').json.schemas(),
@@ -76,100 +139,131 @@ require('lspconfig').jsonls.setup({
   },
 })
 
--- Docker-compose e Dockerfile
-require('lspconfig').docker_compose_language_service.setup{}
-require('lspconfig').dockerls.setup{}
+vim.lsp.enable('jsonls')
 
+
+-- ============================================================================
+-- Docker
+-- ============================================================================
+
+vim.lsp.config('docker_compose_language_service', {})
+vim.lsp.enable('docker_compose_language_service')
+
+vim.lsp.config('dockerls', {})
+vim.lsp.enable('dockerls')
+
+
+-- ============================================================================
 -- Python
-require('lspconfig').anakin_language_server.setup{}
+-- ============================================================================
 
+vim.lsp.config('anakin_language_server', {})
+vim.lsp.enable('anakin_language_server')
+
+
+-- ============================================================================
 -- Lua
+-- ============================================================================
+
 vim.lsp.config('lua_ls', {
   on_init = function(client)
     if client.workspace_folders then
       local path = client.workspace_folders[1].name
+
       if
         path ~= vim.fn.stdpath('config')
-        and (vim.uv.fs_stat(path .. '/.luarc.json') or vim.uv.fs_stat(path .. '/.luarc.jsonc'))
+        and (
+          vim.uv.fs_stat(path .. '/.luarc.json')
+          or vim.uv.fs_stat(path .. '/.luarc.jsonc')
+        )
       then
         return
       end
     end
 
-    client.config.settings.Lua = vim.tbl_deep_extend('force', client.config.settings.Lua, {
-      runtime = {
-        -- Tell the language server which version of Lua you're using (most
-        -- likely LuaJIT in the case of Neovim)
-        version = 'LuaJIT',
-        -- Tell the language server how to find Lua modules same way as Neovim
-        -- (see `:h lua-module-load`)
-        path = {
-          'lua/?.lua',
-          'lua/?/init.lua',
+    client.config.settings.Lua = vim.tbl_deep_extend(
+      'force',
+      client.config.settings.Lua,
+      {
+        runtime = {
+          version = 'LuaJIT',
+
+          path = {
+            'lua/?.lua',
+            'lua/?/init.lua',
+          },
         },
-      },
-      -- Make the server aware of Neovim runtime files
-      workspace = {
-        checkThirdParty = false,
-        library = {
-          vim.env.VIMRUNTIME
-          -- Depending on the usage, you might want to add additional paths
-          -- here.
-          -- '${3rd}/luv/library'
-          -- '${3rd}/busted/library'
-        }
-        -- Or pull in all of 'runtimepath'.
-        -- NOTE: this is a lot slower and will cause issues when working on
-        -- your own configuration.
-        -- See https://github.com/neovim/nvim-lspconfig/issues/3189
-        -- library = {
-        --   vim.api.nvim_get_runtime_file('', true),
-        -- }
+
+        workspace = {
+          checkThirdParty = false,
+
+          library = {
+            vim.env.VIMRUNTIME,
+          },
+        },
       }
-    })
+    )
   end,
+
   settings = {
-    Lua = {}
-  }
+    Lua = {},
+  },
+
+  capabilities = capabilities,
 })
 
 vim.lsp.enable('lua_ls')
 
+
+-- ============================================================================
 -- Keymaps
-vim.keymap.set('n', '<Leader>d', '<cmd>lua vim.diagnostic.open_float()<CR>')
-vim.keymap.set('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>')
-vim.keymap.set('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>')
-vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>')
+-- ============================================================================
+
+vim.keymap.set('n', '<Leader>d', vim.diagnostic.open_float)
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
+
+vim.keymap.set('n', 'gd', vim.lsp.buf.definition)
 vim.keymap.set('n', 'gi', ':Telescope lsp_implementations<CR>')
 vim.keymap.set('n', 'gr', ':Telescope lsp_references<CR>')
-vim.keymap.set('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>')
-vim.keymap.set('n', '<Leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>')
+vim.keymap.set('n', 'K', vim.lsp.buf.hover)
+vim.keymap.set('n', '<Leader>rn', vim.lsp.buf.rename)
 
--- Sign configuration
+
+-- ============================================================================
+-- Diagnostics
+-- ============================================================================
+
 local signs = {
   Error = '',
   Warn = '',
   Info = '',
-  Hint = ''
+  Hint = '',
 }
-vim.diagnostic.config {
+
+vim.diagnostic.config({
   virtual_text = {
     prefix = function(diagnostic)
       return signs[vim.diagnostic.severity[diagnostic.severity]]
     end,
   },
+
   update_in_insert = true,
   underline = true,
   severity_sort = true,
-}
+})
 
--- Copilot configuration
+
+-- ============================================================================
+-- Copilot
+-- ============================================================================
+
 vim.cmd([[
   " Alt + Enter para aceitar sugestão
   let g:copilot_no_tab_map = v:true
   imap <silent><script><expr> <M-CR> copilot#Accept("\<CR>")
-  
-  " Ativar para o seguintes tipos de arquivos
+
+  " Ativar para os seguintes tipos de arquivos
   let g:copilot_filetypes = {
     \ '*': v:false,
     \ 'python': v:true,
