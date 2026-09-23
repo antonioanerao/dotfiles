@@ -140,6 +140,10 @@ alias gcount="git rev-list --count --all"
 ### Listar repo original
 alias gremote="git config --get remote.origin.url"
 
+# Remove último commit e deleta último commit do repositório remoto
+alias ulc="git reset HEAD^"
+alias ulcr="git push origin +HEAD"
+
 ### Abre o nvim ao invés do vim
 alias vim="nvim"
 
